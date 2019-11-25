@@ -30,5 +30,7 @@
 	<string>NSApplication</string>
 	<key>ATSApplicationFontsPath</key>
 	<string>fonts</string>
+	<key>NSAppleEventsUsageDescription</key>
+	<string>Please give me access to send keystrokes to other apps. That makes sense to you?</string>
 </dict>
 </plist>

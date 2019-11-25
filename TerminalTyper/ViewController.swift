@@ -30,6 +30,17 @@ class ViewController: NSViewController {
     end tell
     """
 
+    let screenGrabScript = """
+        tell application "System Events"
+            set fileName to do shell script "date \\"+Screen Shot  %Y-%m-%d at %H.%M.%S.png\\""
+            set thePath to POSIX path of desktop folder
+            do shell script "screencapture  -l$(osascript -e 'tell app \\"iTerm\\" to id of window 1') " & "\\"" & thePath & "/" & fileName & "\\""
+        end tell
+    """
+    
+
+    let shouldGrabScreen = true
+    
     let defaultSpeed: Double = 0.3
     var speed: Double = 0.3 {
         didSet {
@@ -154,7 +165,7 @@ class ViewController: NSViewController {
     
     func typeWrite(_ commandsSource: String) -> String {
         var result = ""
-
+        
         let commands = commandsSource.split(separator: "\n")
 
         commands.forEach {
@@ -167,6 +178,12 @@ class ViewController: NSViewController {
 
             result += "delay \(commandsGapDelay)\n"
             result += "key code 36\n"
+            
+            // grab sreen?
+            if shouldGrabScreen {
+                result += (screenGrabScript + "\n")
+            }
+
         }
         return result
     }
