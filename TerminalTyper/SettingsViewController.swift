@@ -166,10 +166,8 @@ class SettingsViewController: NSViewController, NSComboBoxDelegate {
             toolCombo.selectItem(at: 0)
         case .iTerm:
             toolCombo.selectItem(at: 1)
-        case .sublime:
-            toolCombo.selectItem(at: 2)
         case .code:
-            toolCombo.selectItem(at: 3)
+            toolCombo.selectItem(at: 2)
         }
     }
 
@@ -193,8 +191,6 @@ class SettingsViewController: NSViewController, NSComboBoxDelegate {
         case 1:
             tt = .iTerm
         case 2:
-            tt = .sublime
-        case 3:
             tt = .code
         default:
             tt = .terminal

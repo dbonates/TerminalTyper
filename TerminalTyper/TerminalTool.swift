@@ -11,6 +11,5 @@ import Foundation
 enum TerminalTool: String {
     case terminal = "Terminal"
     case iTerm
-    case sublime = "Sublime Text"
     case code = "Code"
 }
