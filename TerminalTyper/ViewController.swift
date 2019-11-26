@@ -36,6 +36,7 @@ class ViewController: NSViewController {
             set thePath to POSIX path of desktop folder
             do shell script "screencapture  -l$(osascript -e 'tell app \\"iTerm\\" to id of window 1') " & "\\"" & thePath & "/" & fileName & "\\""
         end tell
+        delay 1
     """
     
 
