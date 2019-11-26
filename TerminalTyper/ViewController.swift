@@ -115,9 +115,9 @@ class ViewController: NSViewController {
 
     func setUpAccessoryController() {
 
-        let storyboard = NSStoryboard(name: NSStoryboard.Name(rawValue: "Main"), bundle: nil)
+        let storyboard = NSStoryboard(name: "Main", bundle: nil)
 
-        if let accessoryController = storyboard.instantiateController(withIdentifier: NSStoryboard.SceneIdentifier(rawValue: "TitlebarController")) as? AccessoryViewController {
+        if let accessoryController = storyboard.instantiateController(withIdentifier: "TitlebarController") as? AccessoryViewController {
 
             accessoryController.delegate = self
 
