@@ -21,13 +21,20 @@ class ViewController: NSViewController {
     }
 
     let scriptSource = """
-    tell application \"SCRIPT_TOOL\"
-        activate
-    end tell
-    delay 1
-    tell application "System Events"
-    SCRIPT_COMMANDS
-    end tell
+        set appname to \"SCRIPT_TOOL\"
+        --set appname to "Terminal"
+
+        tell application appname
+            activate
+        end tell
+
+        repeat until application appname is running
+            delay 1
+        end repeat
+        delay 2
+        tell application "System Events"
+            SCRIPT_COMMANDS
+        end tell
     """
 
     let screenGrabScript = """
