@@ -14,7 +14,23 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
 
     func applicationDidFinishLaunching(_ aNotification: Notification) {
-        // Insert code here to initialize your application
+        
+//        var isRunning = false
+//        
+//        let apps = NSWorkspace.shared.runningApplications
+//        
+//        apps.forEach {
+//            if $0.localizedName!.contains("iTerm") {
+//                NSWorkspace.shared.launchApplication($0.localizedName!)
+//                isRunning = true
+//            }
+//        }
+//        
+//        if isRunning {
+//            NSWorkspace.shared.launchApplication("iTerm")
+//        } else {
+//            NSWorkspace.shared.launchApplication("iTerm")
+//        }
     }
 
     func applicationWillTerminate(_ aNotification: Notification) {

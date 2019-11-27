@@ -321,9 +321,6 @@
                                 <rect key="frame" x="18" y="161" width="194" height="24"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <sliderCell key="cell" state="on" alignment="left" minValue="1" maxValue="5" doubleValue="1" tickMarkPosition="below" numberOfTickMarks="5" allowsTickMarkValuesOnly="YES" sliderType="linear" id="6oR-pb-SJ3"/>
-                                <connections>
-                                    <action selector="changeSpeed:" target="1Iz-mA-ALp" id="L3p-HO-Udt"/>
-                                </connections>
                             </slider>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="POY-gl-Dqu">
                                 <rect key="frame" x="18" y="191" width="79" height="17"/>
@@ -361,31 +358,8 @@
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <comboBox verticalHuggingPriority="750" fixedFrame="YES" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Aye-XC-mBP">
-                                <rect key="frame" x="20" y="16" width="252" height="26"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <comboBoxCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" allowsUndo="NO" sendsActionOnEndEditing="YES" borderStyle="bezel" placeholderString="Tool" drawsBackground="YES" completes="NO" numberOfVisibleItems="4" id="MOr-jP-skx">
-                                    <font key="font" metaFont="system"/>
-                                    <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                    <objectValues>
-                                        <string>Terminal</string>
-                                        <string>iTerm</string>
-                                        <string>Sublime Text</string>
-                                        <string>Code</string>
-                                    </objectValues>
-                                </comboBoxCell>
-                                <connections>
-                                    <action selector="toolChanged:" target="1Iz-mA-ALp" id="EGt-qS-QNj"/>
-                                </connections>
-                            </comboBox>
                         </subviews>
                     </view>
-                    <connections>
-                        <outlet property="demoLabel" destination="39D-a9-DpB" id="Pi6-cN-Zd3"/>
-                        <outlet property="speedSlider" destination="Ual-wI-Wak" id="gK0-So-5qG"/>
-                        <outlet property="toolCombo" destination="Aye-XC-mBP" id="oQh-YD-Doq"/>
-                    </connections>
                 </viewController>
                 <customObject id="UsC-M9-MNk" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -396,11 +370,11 @@
             <objects>
                 <viewController storyboardIdentifier="TitlebarController" id="UXO-wp-32h" customClass="AccessoryViewController" customModule="Terminal_Typer" sceneMemberID="viewController">
                     <view key="view" id="4Pf-mo-MEW">
-                        <rect key="frame" x="0.0" y="0.0" width="35" height="19"/>
+                        <rect key="frame" x="0.0" y="0.0" width="43" height="24"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="fnp-qs-W8y">
-                                <rect key="frame" x="0.0" y="0.0" width="30" height="14"/>
+                                <rect key="frame" x="0.0" y="10" width="43" height="14"/>
                                 <buttonCell key="cell" type="bevel" bezelStyle="rounded" imagePosition="overlaps" alignment="center" imageScaling="proportionallyDown" inset="2" id="8G4-3a-J4H">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -411,10 +385,9 @@
                             </button>
                         </subviews>
                         <constraints>
-                            <constraint firstItem="fnp-qs-W8y" firstAttribute="top" secondItem="4Pf-mo-MEW" secondAttribute="top" constant="5" id="ZeD-2L-1hH"/>
-                            <constraint firstItem="fnp-qs-W8y" firstAttribute="leading" secondItem="4Pf-mo-MEW" secondAttribute="leading" id="cOL-s0-VcM"/>
-                            <constraint firstAttribute="trailing" secondItem="fnp-qs-W8y" secondAttribute="trailing" constant="5" id="eBu-Ky-nsC"/>
-                            <constraint firstAttribute="bottom" secondItem="fnp-qs-W8y" secondAttribute="bottom" id="yfj-Iw-vBX"/>
+                            <constraint firstItem="fnp-qs-W8y" firstAttribute="leading" secondItem="4Pf-mo-MEW" secondAttribute="leading" id="b3Z-eI-xbD"/>
+                            <constraint firstAttribute="trailing" secondItem="fnp-qs-W8y" secondAttribute="trailing" id="p1r-eG-s0K"/>
+                            <constraint firstItem="fnp-qs-W8y" firstAttribute="top" secondItem="4Pf-mo-MEW" secondAttribute="top" id="wtg-G6-NXj"/>
                         </constraints>
                     </view>
                     <connections>
@@ -423,7 +396,7 @@
                 </viewController>
                 <customObject id="BL8-0A-BjR" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="699" y="284"/>
+            <point key="canvasLocation" x="574.5" y="286"/>
         </scene>
     </scenes>
 </document>

@@ -10,6 +10,6 @@ import Foundation
 
 enum TerminalTool: String {
     case terminal = "Terminal"
-    case iTerm
-    case code = "Code"
+    case iTerm = "iTerm"
+    case code = "Visual Studio Code"
 }

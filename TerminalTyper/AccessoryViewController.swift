@@ -16,15 +16,15 @@ class AccessoryViewController: NSTitlebarAccessoryViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        settingsButton.image = #imageLiteral(resourceName: "gear").tint(with: delegate?.theme == .dark ? .lightText : .darkBackground)
+//        settingsButton.image = #imageLiteral(resourceName: "gear").tint(with: delegate?.theme == .dark ? .lightText : .darkBackground)
     }
 
     @objc func showPrefs() {
-        delegate?.showSettings()
+        delegate?.showSettings(self)
     }
 
     @IBAction func acessoryAction(_ sender: NSButton) {
-        delegate?.showSettings()
+        delegate?.showSettings(self)
     }
 
 

@@ -80,12 +80,24 @@ class SettingsViewController: NSViewController, NSComboBoxDelegate {
         return lbl
     }()
 
-    lazy var toolCombo: NSComboBox = {
-        let combo: NSComboBox = NSComboBox.baby()
+    
+    lazy var toolCombo: NSPopUpButton = {
+        let combo: NSPopUpButton = NSPopUpButton.baby()
 
-        combo.usesDataSource = false
-        combo.addItems(withObjectValues: ["Terminal", "iTerm", "Sublime Text", "Code"])
-        combo.isEditable = false
+        
+        combo.action = #selector(toolChanged)
+        combo.target = self
+        combo.addItems(withTitles: ["Terminal", "iTerm", "Code"])
+        combo.menu?.autoenablesItems = false
+        
+//        combo.menu?.addItem(withTitle: "Terminal", action: #selector(toolChanged), keyEquivalent: "")
+//        combo.menu?.addItem(withTitle: "iTerm", action: #selector(toolChanged), keyEquivalent: "")
+//        combo.menu?.addItem(withTitle: "Code", action: #selector(toolChanged), keyEquivalent: "")
+//
+        combo.itemArray.forEach {
+            $0.isEnabled = true
+        }
+        
         return combo
     }()
 
@@ -121,8 +133,9 @@ class SettingsViewController: NSViewController, NSComboBoxDelegate {
         view.addSubview(toolCombo)
         toolCombo.anchorBelow(toolComboCaption, topConstant: 0, margin: 20, fixedHeight: 20)
         toolCombo.selectItem(at: 0)
-        toolCombo.delegate = self
+//        toolCombo.delegate = self
 
+        
         var frame = view.bounds
         let finalHeight = (20 * 4) + 20 + 24 + demoLabel.bounds.height + speedSlider.bounds.height + speedSliderLabel.bounds.height + demoLabelCaption.bounds.size.height + toolComboCaption.bounds.height
 
@@ -154,7 +167,6 @@ class SettingsViewController: NSViewController, NSComboBoxDelegate {
 
         guard let delegate = self.delegate else { return }
 
-        print(delegate.terminalTool)
         self.terminalTool = delegate.terminalTool
         self.speed = delegate.speed
 
@@ -182,6 +194,14 @@ class SettingsViewController: NSViewController, NSComboBoxDelegate {
         toolChanged()
     }
 
+    @objc func popUpSelectionDidChange(_ sender: NSPopUpButton) {
+        if sender.indexOfSelectedItem == 0 {
+            print("User has re-selected the initially selected item.")
+        } else {
+            print("User has selected some item other than the initially selected item.")
+        }
+    }
+    
     @objc func toolChanged() {
 
         var tt: TerminalTool

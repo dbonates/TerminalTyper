@@ -21,18 +21,8 @@ class ViewController: NSViewController {
     }
 
     let scriptSource = """
-        set appname to \"SCRIPT_TOOL\"
-        --set appname to "Terminal"
-
-        tell application appname
-            activate
-        end tell
-
-        repeat until application appname is running
-            delay 1
-        end repeat
-        delay 2
         tell application "System Events"
+            delay 2
             SCRIPT_COMMANDS
         end tell
     """
@@ -47,7 +37,7 @@ class ViewController: NSViewController {
     """
     
 
-    let shouldGrabScreen = true
+    let shouldGrabEveryScreen = true
     
     let defaultSpeed: Double = 0.3
     var speed: Double = 0.3 {
@@ -67,6 +57,7 @@ class ViewController: NSViewController {
     var terminalTool: TerminalTool = .terminal {
         didSet {
             persistTerminalToolPreferences()
+            print(terminalTool)
         }
     }
 
@@ -81,6 +72,7 @@ class ViewController: NSViewController {
 
         NotificationCenter.default.addObserver(self, selector: #selector(toogleTheme), name: NSNotification.Name("toogleTheme"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(runCommands(_:)), name: NSNotification.Name("runCommands"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(showSettings(_:)), name: NSNotification.Name("openSettings"), object: nil)
 
     }
 
@@ -95,7 +87,7 @@ class ViewController: NSViewController {
         }
     }
 
-    func showSettings() {
+    @objc func showSettings(_ sender: Any) {
 
         if popover.isShown {
             popover.close()
@@ -115,6 +107,8 @@ class ViewController: NSViewController {
 
     func setUpAccessoryController() {
 
+        
+
         let storyboard = NSStoryboard(name: "Main", bundle: nil)
 
         if let accessoryController = storyboard.instantiateController(withIdentifier: "TitlebarController") as? AccessoryViewController {
@@ -131,8 +125,6 @@ class ViewController: NSViewController {
                     NSApplication.shared.keyWindow?.removeTitlebarAccessoryViewController(at: 0)
                 }
             }
-
-
 
             self.accessoryController = accessoryController
 
@@ -187,8 +179,8 @@ class ViewController: NSViewController {
             result += "delay \(commandsGapDelay)\n"
             result += "key code 36\n"
             
-            // grab sreen?
-            if shouldGrabScreen {
+            // grab every sreen?
+            if shouldGrabEveryScreen {
                 result += (screenGrabScript + "\n")
             }
 
@@ -196,13 +188,63 @@ class ViewController: NSViewController {
         return result
     }
 
-    @objc func runCommands(_ sender: Any) {
+    var timer = Timer()
+    
+    
+    var tryCounter = 0
+    
+    @objc func fireTimer() {
+        
+        var isRunning = false
+        
+        if let app = NSWorkspace.shared.frontmostApplication {
+            if let name = app.localizedName {
+                if name.contains(terminalTool.rawValue) || terminalTool.rawValue.contains(name) {
+                    isRunning = true
+                }
+            }
+        }
+        
+        tryCounter += 1
+        print(tryCounter)
+        
+        if isRunning {
+            timer.invalidate()
+            proceedAndRunCommands()
+            return
+        }
+        
+        if tryCounter >= 7 {
+            print("não consegui executar o app")
+            timer.invalidate()
 
-        let commands = commandsInput.string
+        }
+    }
+    
+    @objc func runCommands(_ sender: Any) {
+        
+        NSWorkspace.shared.launchApplication(terminalTool.rawValue)
+        tryCounter = 0
+        timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(fireTimer), userInfo: nil, repeats: true)
+        timer.fire()
+
+        
+    }
+    
+    func proceedAndRunCommands() {
+        var commands = commandsInput.string
+        
+        // if not grab every screen, look for individual commands to do it
+        if !shouldGrabEveryScreen {
+            commands = commands.replacingOccurrences(of: "_snap", with: "\n" + screenGrabScript + "\n")
+        }
+        
         let scriptCommands = typeWrite(commands)
+        
 
         let finalScript = scriptSource.replacingOccurrences(of: "SCRIPT_COMMANDS", with: "\n" + scriptCommands + "\n").replacingOccurrences(of: "SCRIPT_TOOL", with: terminalTool.rawValue)
 
+        
         var error: NSDictionary?
         let script = NSAppleScript(source: finalScript)
         script?.executeAndReturnError(&error)

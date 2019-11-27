@@ -21,7 +21,6 @@
 		E89B20412060B13C00A388D0 /* VibrancyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E89B20402060B13C00A388D0 /* VibrancyView.swift */; };
 		E8FA662C205C04A1007F4BB9 /* CustomWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8FA662B205C04A1007F4BB9 /* CustomWindowController.swift */; };
 		E8FA6633205C4B6C007F4BB9 /* droid-sans-mono-powerline.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E8FA6630205C48BB007F4BB9 /* droid-sans-mono-powerline.ttf */; };
-		E8FA6635205C5981007F4BB9 /* SettingsViewControllerOLD.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8FA6634205C5981007F4BB9 /* SettingsViewControllerOLD.swift */; };
 		E8FA6637205C5FD7007F4BB9 /* AccessoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8FA6636205C5FD7007F4BB9 /* AccessoryViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -43,7 +42,6 @@
 		E89B20402060B13C00A388D0 /* VibrancyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VibrancyView.swift; sourceTree = "<group>"; };
 		E8FA662B205C04A1007F4BB9 /* CustomWindowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomWindowController.swift; sourceTree = "<group>"; };
 		E8FA6630205C48BB007F4BB9 /* droid-sans-mono-powerline.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "droid-sans-mono-powerline.ttf"; sourceTree = "<group>"; };
-		E8FA6634205C5981007F4BB9 /* SettingsViewControllerOLD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewControllerOLD.swift; sourceTree = "<group>"; };
 		E8FA6636205C5FD7007F4BB9 /* AccessoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessoryViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -79,7 +77,6 @@
 			children = (
 				E8112F92205BE2B900D95D79 /* AppDelegate.swift */,
 				E8112F94205BE2B900D95D79 /* ViewController.swift */,
-				E8FA6634205C5981007F4BB9 /* SettingsViewControllerOLD.swift */,
 				E82E1B97206092D3001076CE /* SettingsViewController.swift */,
 				E8FA6636205C5FD7007F4BB9 /* AccessoryViewController.swift */,
 				E8FA662B205C04A1007F4BB9 /* CustomWindowController.swift */,
@@ -191,7 +188,6 @@
 				E87D9318205C925D00BD91F1 /* Speed+.swift in Sources */,
 				E87D9312205C762800BD91F1 /* NSImage+.swift in Sources */,
 				E8FA662C205C04A1007F4BB9 /* CustomWindowController.swift in Sources */,
-				E8FA6635205C5981007F4BB9 /* SettingsViewControllerOLD.swift in Sources */,
 				E8FA6637205C5FD7007F4BB9 /* AccessoryViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
